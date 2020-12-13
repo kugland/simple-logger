@@ -10,54 +10,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.taggedLogger = void 0;
 var timestamp_1 = __importDefault(require("./timestamp"));
-var nullEmitter = function () { };
-var baseEmitter = function () {
+var logger = function () {
     var messages = [];
     for (var _i = 0; _i < arguments.length; _i++) {
         messages[_i] = arguments[_i];
     }
     console.log.apply(console, __spreadArrays([timestamp_1.default(), '|'], messages));
 };
-function prefixEmitter(emitter) {
-    var prefix = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        prefix[_i - 1] = arguments[_i];
+var taggedLogger = function (tag) { return function () {
+    var messages = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        messages[_i] = arguments[_i];
     }
-    return function () {
-        var messages = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            messages[_i] = arguments[_i];
-        }
-        return emitter.apply(void 0, __spreadArrays(prefix, messages));
-    };
-}
-;
-function simpleLogger(verbosity) {
-    if (verbosity === void 0) { verbosity = 'info'; }
-    var logger = {
-        trace: nullEmitter, debug: nullEmitter, info: nullEmitter,
-        warn: nullEmitter, error: nullEmitter, fatal: nullEmitter,
-    };
-    switch (verbosity) {
-        case 'all':
-        case 'trace': logger.trace = baseEmitter;
-        case 'debug': logger.debug = baseEmitter;
-        case 'info': logger.info = baseEmitter;
-        case 'warn': logger.warn = baseEmitter;
-        case 'error': logger.error = baseEmitter;
-        case 'fatal': logger.fatal = baseEmitter;
-    }
-    return function (tag) {
-        return {
-            trace: prefixEmitter(logger.trace, tag, '|', 'trace', '|'),
-            debug: prefixEmitter(logger.debug, tag, '|', 'debug', '|'),
-            info: prefixEmitter(logger.info, tag, '|', 'info ', '|'),
-            warn: prefixEmitter(logger.warn, tag, '|', 'warn ', '|'),
-            error: prefixEmitter(logger.error, tag, '|', 'error', '|'),
-            fatal: prefixEmitter(logger.fatal, tag, '|', 'fatal', '|'),
-        };
-    };
-}
-exports.default = simpleLogger;
+    return logger.apply(void 0, __spreadArrays([tag], messages));
+}; };
+exports.taggedLogger = taggedLogger;
+exports.default = logger;
 //# sourceMappingURL=index.js.map

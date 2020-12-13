@@ -1,12 +1,5 @@
-declare type SimpleLoggerEmitter = (...messages: any[]) => void;
-export interface SimpleLogger {
-    trace: SimpleLoggerEmitter;
-    debug: SimpleLoggerEmitter;
-    info: SimpleLoggerEmitter;
-    warn: SimpleLoggerEmitter;
-    error: SimpleLoggerEmitter;
-    fatal: SimpleLoggerEmitter;
-}
-export default function simpleLogger(verbosity?: keyof SimpleLogger | 'all' | 'none'): (tag: string) => SimpleLogger;
-export {};
+export declare type SimpleLogger = (...messages: any[]) => void;
+declare const logger: SimpleLogger;
+export declare const taggedLogger: (tag: string) => SimpleLogger;
+export default logger;
 //# sourceMappingURL=index.d.ts.map

@@ -5,8 +5,8 @@ A simple logger with timestamps and tags.
 ## Usage
 
 ```javascript
-import logger from 'simple-logger';
+import logger, { taggedLogger } from 'simple-logger';
 
-const logger = logger('all')('MyContext');
-logger.error('Something wrong happened');
+logger('Message =', 1);
+taggedLogger('TAG')('Message =', 2);
 ```
