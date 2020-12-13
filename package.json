@@ -1,0 +1,16 @@
+{
+  "name": "simple-logger",
+  "version": "1.0.0",
+  "description": "A simple logger with timestamps and tags",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "author": "André Kugland",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  },
+  "dependencies": {},
+  "scripts": {
+    "build": "npx tsc"
+  }
+}
