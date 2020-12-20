@@ -9,7 +9,9 @@
   "devDependencies": {
     "typescript": "^4.1.3"
   },
-  "dependencies": {},
+  "dependencies": {
+    "chalk": "^4.1.0"
+  },
   "scripts": {
     "build": "npx tsc"
   }
